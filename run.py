@@ -55,6 +55,10 @@ if __name__ == '__main__':
         raw_image = cv2.imread(filename)
         
         depth = depth_anything.infer_image(raw_image, args.input_size)
+
+        np.save(os.path.join(args.outdir, os.path.splitext(os.path.basename(filename))[0]),depth)
+        print("Tensor was saved!")
+                
         
         depth = (depth - depth.min()) / (depth.max() - depth.min()) * 255.0
         depth = depth.astype(np.uint8)
@@ -71,3 +75,7 @@ if __name__ == '__main__':
             combined_result = cv2.hconcat([raw_image, split_region, depth])
             
             cv2.imwrite(os.path.join(args.outdir, os.path.splitext(os.path.basename(filename))[0] + '.png'), combined_result)
+
+        
+
+            
