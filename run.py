@@ -56,7 +56,7 @@ if __name__ == '__main__':
         
         depth = depth_anything.infer_image(raw_image, args.input_size)
 
-        np.save(os.path.join(args.outdir, os.path.splitext(os.path.basename(filename))[0]),depth)
+        np.save(os.path.join(args.outdir, os.path.splitext(os.path.basename(filename))[0]),depth) #SAVES TENSOR
         print("Tensor was saved!")
                 
         
